@@ -1,36 +1,197 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 Professional Portfolio
 
-## Getting Started
+A modern, responsive developer portfolio built with Next.js, Shadcn UI, and TailwindCSS. Features dark/light mode and markdown-based content management.
 
-First, run the development server:
+## ✨ Features
+
+- 🎯 **Modern Design** - Clean, professional UI with Shadcn components
+- 🌓 **Dark/Light Mode** - System-aware theme switching
+- 📱 **Fully Responsive** - Mobile-first approach
+- ✏️ **Markdown Content** - Easy content updates without touching code
+- 🚀 **Fast Performance** - Built with Next.js 15 and Turbopack
+- ♿ **Accessible** - Semantic HTML and ARIA labels
+- 🎨 **Customizable** - Easy to modify colors and styles
+
+## 📋 Sections
+
+- **Header** - Name, title, and contact information with theme toggle
+- **About** - Professional summary
+- **Skills** - Categorized technical and soft skills
+- **Experience** - Timeline-style work history
+- **Education** - Academic background and languages
+- **Footer** - Social links and copyright
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- pnpm (preferred package manager)
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# Install dependencies
+pnpm install
+
+# Run development server
 pnpm dev
-# or
-bun dev
+
+# Build for production
+pnpm build
+
+# Start production server
+pnpm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view your portfolio.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✏️ Updating Content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All portfolio content is managed through Markdown files in the `/content` directory. **No coding required!**
 
-## Learn More
+See **[CONTENT_GUIDE.md](./CONTENT_GUIDE.md)** for detailed instructions on updating:
+- Profile information
+- Skills
+- Work experience
+- Education
 
-To learn more about Next.js, take a look at the following resources:
+### Quick Example
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+To update your name and title, edit `/content/profile.md`:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```markdown
+---
+name: "Your Name Here"
+title: "Your Professional Title"
+email: "your.email@example.com"
+---
 
-## Deploy on Vercel
+# About Me
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Your professional summary here...
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Save the file and refresh your browser. That's it!
+
+## 📁 Project Structure
+
+```
+my-portfolio/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # Root layout with theme provider
+│   ├── page.tsx           # Main page
+│   └── globals.css        # Global styles
+├── components/            # React components
+│   ├── ui/               # Shadcn UI components
+│   ├── header.tsx        # Site header
+│   ├── about-section.tsx
+│   ├── skills-section.tsx
+│   ├── experience-section.tsx
+│   ├── education-section.tsx
+│   ├── footer.tsx
+│   └── theme-toggle.tsx  # Dark/light mode toggle
+├── content/              # 📝 MARKDOWN CONTENT (EDIT THESE!)
+│   ├── profile.md       # Your info and summary
+│   ├── skills.md        # Skills by category
+│   ├── education.md     # Education and languages
+│   └── experience/      # Job history (one file per job)
+├── lib/
+│   ├── content.ts       # Content loading utilities
+│   └── utils.ts         # Helper functions
+├── public/              # Static assets
+└── data/
+    └── profile.ts       # Legacy data (now using markdown!)
+```
+
+## 🎨 Customization
+
+### Change Theme Colors
+
+Edit `/app/globals.css` and modify the CSS variables:
+
+```css
+:root {
+  --primary: oklch(...);    /* Primary color */
+  --secondary: oklch(...);  /* Secondary color */
+  --accent: oklch(...);     /* Accent color */
+  /* ... more colors */
+}
+```
+
+### Modify Layout
+
+Edit the component files in `/components`:
+- `header.tsx` - Header layout and contact display
+- `*-section.tsx` - Individual section layouts
+- `footer.tsx` - Footer content and social links
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js 15](https://nextjs.org/)
+- **UI Library:** [Shadcn UI](https://ui.shadcn.com/)
+- **Styling:** [TailwindCSS 4](https://tailwindcss.com/)
+- **Icons:** [Lucide React](https://lucide.dev/)
+- **Theme:** [next-themes](https://github.com/pacocoursey/next-themes)
+- **Markdown:** [gray-matter](https://github.com/jonschlinkert/gray-matter)
+- **Typography:** [Geist Font](https://vercel.com/font)
+
+## 📦 Available Scripts
+
+```bash
+pnpm dev          # Start development server with Turbopack
+pnpm build        # Build for production
+pnpm start        # Start production server
+pnpm lint         # Run ESLint
+```
+
+## 🔧 Adding Shadcn Components
+
+To add more Shadcn UI components:
+
+```bash
+pnpm dlx shadcn@latest add [component-name]
+```
+
+Example:
+```bash
+pnpm dlx shadcn@latest add dialog
+pnpm dlx shadcn@latest add tooltip
+```
+
+## 🌐 Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Import your repo in [Vercel](https://vercel.com)
+3. Deploy! (Vercel auto-detects Next.js)
+
+### Other Platforms
+
+Build the production version:
+
+```bash
+pnpm build
+pnpm start
+```
+
+Then deploy the `.next` folder to your hosting platform.
+
+## 📝 License
+
+This project is open source and available for personal and commercial use.
+
+## 🤝 Contributing
+
+Feel free to customize this portfolio for your own use!
+
+## 📧 Contact
+
+**Jun-Paul I. Bosque**
+- Email: bosque.junpaul@gmail.com
+- LinkedIn: [linkedin.com/in/junbosque](https://linkedin.com/in/junbosque)
+
+---
+
+Built with ❤️ using Next.js, Shadcn UI, and TailwindCSS
