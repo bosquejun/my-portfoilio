@@ -152,8 +152,8 @@ export const ModernHero = ({ profile }: ModernHeroProps) => {
           )}
         </motion.div>
 
-        {/* Download CV Button */}
-        <motion.div
+        {/* Download CV Button - Hidden */}
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -165,7 +165,7 @@ export const ModernHero = ({ profile }: ModernHeroProps) => {
               <span>Download CV</span>
             </div>
           </ModernButton>
-        </motion.div>
+        </motion.div> */}
       </Container>
     </section>
   );

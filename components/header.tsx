@@ -18,7 +18,8 @@ export function Header({ profile }: HeaderProps) {
           <p className="text-xs md:text-sm text-muted-foreground hidden sm:block">{profile.title}</p>
         </div>
         <div className="flex items-center gap-2 md:gap-3">
-          <Button variant="default" size="sm" asChild className="hidden sm:flex">
+          {/* Download CV Buttons - Hidden */}
+          {/* <Button variant="default" size="sm" asChild className="hidden sm:flex">
             <a 
               href="/cv.pdf"
               download
@@ -36,7 +37,7 @@ export function Header({ profile }: HeaderProps) {
             >
               <Download className="h-4 w-4" />
             </a>
-          </Button>
+          </Button> */}
           <ThemeToggle />
         </div>
       </div>

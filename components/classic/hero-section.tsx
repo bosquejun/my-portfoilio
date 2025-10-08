@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { ProfileData } from "@/lib/content"
-import { Download, Github, Globe, Linkedin, Mail, MapPin } from "lucide-react"
+import { Github, Globe, Linkedin, Mail, MapPin } from "lucide-react"
 import { motion } from "motion/react"
 import Image from "next/image"
 
@@ -141,8 +141,8 @@ export function HeroSection({ profile }: HeroSectionProps) {
               )}
             </motion.div>
 
-            {/* Download CV Button */}
-            <motion.div
+            {/* Download CV Button - Hidden */}
+            {/* <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -158,7 +158,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
                   <span>Download CV</span>
                 </a>
               </Button>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </div>

@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { ProfileData } from "@/lib/content"
-import { FileDown, Github, Linkedin, Mail } from "lucide-react"
+import { FOOTER_CONFIG } from "@/lib/footer-config"
+import { Github, Linkedin, Mail } from "lucide-react"
 
 interface FooterProps {
   profile: ProfileData
@@ -11,7 +12,7 @@ export function Footer({ profile }: FooterProps) {
   return (
     <footer className="border-t">
       <div className="container px-4 md:px-8 py-8 md:py-12">
-        <div className="flex flex-col items-center gap-6">
+        <div className="flex flex-col items-center justify-center gap-6 max-w-2xl mx-auto">
           <div className="flex flex-wrap justify-center gap-4">
             {profile.email && (
               <Button variant="outline" size="icon" asChild>
@@ -47,7 +48,8 @@ export function Footer({ profile }: FooterProps) {
                 </a>
               </Button>
             )}
-            <Button variant="outline" size="icon" asChild>
+            {/* Download CV Button - Hidden */}
+            {/* <Button variant="outline" size="icon" asChild>
               <a 
                 href="/cv.pdf"
                 download
@@ -55,14 +57,14 @@ export function Footer({ profile }: FooterProps) {
               >
                 <FileDown className="h-5 w-5" />
               </a>
-            </Button>
+            </Button> */}
           </div>
           
           <Separator className="w-full max-w-xs" />
           
           <div className="text-center text-xs md:text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
-            {profile.website && (
+            <p>{FOOTER_CONFIG.copyright(profile.name)}</p>
+            {FOOTER_CONFIG.showWebsite && profile.website && (
               <p className="mt-1">
                 <a 
                   href={profile.website}
@@ -74,7 +76,7 @@ export function Footer({ profile }: FooterProps) {
                 </a>
               </p>
             )}
-            <p className="mt-2">Built with Next.js, Shadcn UI & TailwindCSS</p>
+            <p className="mt-2 text-xs">{FOOTER_CONFIG.builtWith}</p>
           </div>
         </div>
       </div>

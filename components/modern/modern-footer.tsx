@@ -1,6 +1,7 @@
 "use client";
 
 import { ProfileData } from "@/lib/content";
+import { FOOTER_CONFIG } from "@/lib/footer-config";
 import { Github, Globe, Linkedin, Mail } from "lucide-react";
 import { motion } from "motion/react";
 import { Container } from "./container";
@@ -13,7 +14,7 @@ export function ModernFooter({ profile }: ModernFooterProps) {
   return (
     <footer className="border-divide border-x border-t">
       <Container className="px-4 md:px-8 py-12 md:py-16">
-        <div className="flex flex-col items-center gap-8">
+        <div className="flex flex-col items-center justify-center gap-8 max-w-2xl mx-auto">
           {/* Social Links */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -75,8 +76,8 @@ export function ModernFooter({ profile }: ModernFooterProps) {
             viewport={{ once: true }}
             className="text-center text-sm text-footer-link space-y-2"
           >
-            <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
-            {profile.website && (
+            <p>{FOOTER_CONFIG.copyright(profile.name)}</p>
+            {FOOTER_CONFIG.showWebsite && profile.website && (
               <p>
                 <a
                   href={profile.website}
@@ -89,7 +90,7 @@ export function ModernFooter({ profile }: ModernFooterProps) {
               </p>
             )}
             <p className="text-xs">
-              Built with Next.js • Motion • TailwindCSS
+              {FOOTER_CONFIG.builtWith}
             </p>
           </motion.div>
         </div>

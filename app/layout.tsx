@@ -1,34 +1,50 @@
 import { ThemeProvider } from "@/components/theme-provider";
+import { getProfile } from "@/lib/content";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Fira_Code, Urbanist } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const urbanist = Urbanist({
+  variable: "--font-urbanist",
   subsets: ["latin"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const firaCode = Fira_Code({
+  variable: "--font-fira-code",
   subsets: ["latin"],
+  display: "swap",
 });
+
+// Generate metadata from profile.md
+const profile = getProfile();
+const siteTitle = `${profile.name} | ${profile.title}`;
+const siteDescription = profile.summary;
+const siteUrl = profile.website || 'https://jun.is-a.dev';
 
 export const metadata: Metadata = {
-  title: "Jun-Paul I. Bosque | Senior Full-Stack Developer",
-  description: "Full-Stack Developer and Team Lead with 9 years of experience in Fintech and Blockchain. Skilled in Node.js, React.js, and AWS.",
-  metadataBase: new URL('https://jun.is-a.dev'),
+  title: siteTitle,
+  description: siteDescription,
+  metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "Jun-Paul I. Bosque | Senior Full-Stack Developer",
-    description: "Full-Stack Developer and Team Lead with 9 years of experience in Fintech and Blockchain. Skilled in Node.js, React.js, and AWS.",
-    url: 'https://jun.is-a.dev',
-    siteName: 'Jun-Paul I. Bosque Portfolio',
+    title: siteTitle,
+    description: siteDescription,
+    url: siteUrl,
+    siteName: `${profile.name} Portfolio`,
     locale: 'en_US',
     type: 'website',
+    images: profile.photo ? [
+      {
+        url: profile.photo,
+        alt: profile.name,
+      }
+    ] : undefined,
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Jun-Paul I. Bosque | Senior Full-Stack Developer",
-    description: "Full-Stack Developer and Team Lead with 9 years of experience in Fintech and Blockchain.",
+    title: siteTitle,
+    description: siteDescription,
+    images: profile.photo ? [profile.photo] : undefined,
   },
 };
 
@@ -40,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${urbanist.variable} ${firaCode.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"
