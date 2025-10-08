@@ -170,8 +170,6 @@ const MobileNav = ({
 
 const DesktopNav = ({
   items,
-  name,
-  photo
 }: {
   items: { title: string; href: string }[];
   name: string;

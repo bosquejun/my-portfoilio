@@ -1,8 +1,7 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { ProfileData } from "@/lib/content"
-import { Download, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
+import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 import { ThemeToggle } from "./theme-toggle"
 
 interface HeaderProps {
