@@ -9,9 +9,10 @@ export interface ProfileData {
   title: string
   location: string
   email: string
-  phone: string
+  phone?: string
   linkedin: string
   github: string
+  website?: string
   summary: string
 }
 
@@ -48,6 +49,7 @@ export function getProfile(): ProfileData {
     phone: data.phone,
     linkedin: data.linkedin,
     github: data.github,
+    website: data.website,
     summary: content.replace(/^#\s+About Me\s+/m, '').trim()
   }
 }

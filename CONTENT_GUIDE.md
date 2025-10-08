@@ -29,8 +29,10 @@ name: "Your Name"
 title: "Your Title"
 location: "Your Location"
 email: "your.email@example.com"
-phone: "+63 123 456 7890"
+phone: "+63 123 456 7890"  # Optional - remove if you don't want to display
 linkedin: "https://linkedin.com/in/yourprofile"
+github: "https://github.com/yourusername"
+website: "https://yourportfolio.com"  # Optional - your portfolio URL
 ---
 
 # About Me
@@ -41,6 +43,9 @@ This section appears in the "About" section of your portfolio.
 
 **What to edit:**
 - The section between `---` markers contains your contact information
+- Required fields: `name`, `title`, `email`, `linkedin`, and `github`
+- Optional fields: `phone`, `website` (remove lines if you don't want to display them)
+- The `website` URL will appear in the footer
 - The text after `# About Me` is your professional summary
 - Change any value, save the file, and refresh your browser!
 
@@ -142,6 +147,19 @@ languages:
 
 ---
 
+## 📄 Updating Your CV
+
+To update your downloadable CV:
+
+1. Replace `/public/cv.pdf` with your new CV file
+2. Make sure it's named exactly `cv.pdf`
+3. The download button appears in:
+   - **Header** (top right) - "Download CV" button
+   - **Footer** (bottom) - CV icon button
+4. Users can download it with one click!
+
+---
+
 ## 🚀 Quick Changes Checklist
 
 - [ ] Update contact info in `profile.md`
@@ -150,6 +168,7 @@ languages:
 - [ ] Update current job in `experience/01-*.md`
 - [ ] Add new job experience if needed
 - [ ] Update education in `education.md`
+- [ ] Replace `/public/cv.pdf` with your latest CV
 
 ---
 

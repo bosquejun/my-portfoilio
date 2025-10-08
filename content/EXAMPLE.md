@@ -10,8 +10,10 @@ name: "John Doe"
 title: "Full-Stack Developer"
 location: "San Francisco, CA"
 email: "john.doe@example.com"
-phone: "+1 555 123 4567"
+phone: "+1 555 123 4567"  # Optional field
 linkedin: "https://linkedin.com/in/johndoe"
+github: "https://github.com/johndoe"
+website: "https://johndoe.dev"  # Optional field
 ---
 
 # About Me
@@ -23,6 +25,9 @@ I love creating elegant solutions to complex problems and mentoring junior devel
 **Key Points:**
 - Everything between `---` markers is YAML frontmatter (metadata)
 - The text after `# About Me` is your summary
+- `phone` and `website` are optional - remove lines if you don't want to display them
+- `github` will display in header and footer
+- `website` will display as a link in the footer
 - Just change the values in quotes!
 
 ---

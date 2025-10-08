@@ -16,6 +16,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Jun-Paul I. Bosque | Senior Full-Stack Developer",
   description: "Full-Stack Developer and Team Lead with 9 years of experience in Fintech and Blockchain. Skilled in Node.js, React.js, and AWS.",
+  metadataBase: new URL('https://jun.is-a.dev'),
+  openGraph: {
+    title: "Jun-Paul I. Bosque | Senior Full-Stack Developer",
+    description: "Full-Stack Developer and Team Lead with 9 years of experience in Fintech and Blockchain. Skilled in Node.js, React.js, and AWS.",
+    url: 'https://jun.is-a.dev',
+    siteName: 'Jun-Paul I. Bosque Portfolio',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Jun-Paul I. Bosque | Senior Full-Stack Developer",
+    description: "Full-Stack Developer and Team Lead with 9 years of experience in Fintech and Blockchain.",
+  },
 };
 
 export default function RootLayout({

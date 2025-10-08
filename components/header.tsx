@@ -1,7 +1,8 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import { ProfileData } from "@/lib/content"
-import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
+import { Download, Github, Linkedin, Mail, MapPin, Phone } from "lucide-react"
 import { ThemeToggle } from "./theme-toggle"
 
 interface HeaderProps {
@@ -16,7 +17,28 @@ export function Header({ profile }: HeaderProps) {
           <h1 className="text-lg md:text-2xl font-bold tracking-tight">{profile.name}</h1>
           <p className="text-xs md:text-sm text-muted-foreground hidden sm:block">{profile.title}</p>
         </div>
-        <ThemeToggle />
+        <div className="flex items-center gap-2 md:gap-3">
+          <Button variant="default" size="sm" asChild className="hidden sm:flex">
+            <a 
+              href="/cv.pdf"
+              download
+              className="flex items-center gap-2"
+            >
+              <Download className="h-4 w-4" />
+              <span>Download CV</span>
+            </a>
+          </Button>
+          <Button variant="outline" size="icon" asChild className="sm:hidden">
+            <a 
+              href="/cv.pdf"
+              download
+              aria-label="Download CV"
+            >
+              <Download className="h-4 w-4" />
+            </a>
+          </Button>
+          <ThemeToggle />
+        </div>
       </div>
       <div className="border-b">
         <div className="container px-4 md:px-8 py-3">

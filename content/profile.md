@@ -5,6 +5,7 @@ location: "Metro Manila, Philippines"
 email: "bosque.junpaul@gmail.com"
 linkedin: "https://linkedin.com/in/junbosque"
 github: "https://github.com/bosquejun"
+website: "https://jun.is-a.dev"
 ---
 
 # About Me
