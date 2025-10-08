@@ -13,6 +13,7 @@ export interface ProfileData {
   linkedin: string
   github: string
   website?: string
+  photo?: string
   summary: string
 }
 
@@ -50,6 +51,7 @@ export function getProfile(): ProfileData {
     linkedin: data.linkedin,
     github: data.github,
     website: data.website,
+    photo: data.photo,
     summary: content.replace(/^#\s+About Me\s+/m, '').trim()
   }
 }
