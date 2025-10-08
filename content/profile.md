@@ -1,6 +1,6 @@
 ---
 name: "Jun-Paul I. Bosque [Jun]"
-title: "Senior Full-Stack Developer | Software Engineering Team Lead"
+title: "Senior Full-Stack Developer - ReactJS/NodeJS"
 location: "Metro Manila, Philippines"
 email: "bosque.junpaul@gmail.com"
 linkedin: "https://linkedin.com/in/junbosque"
