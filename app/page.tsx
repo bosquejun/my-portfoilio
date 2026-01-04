@@ -1,4 +1,5 @@
 import { PortfolioClient } from "@/components/portfolio-client";
+import { StructuredData } from "@/components/structured-data";
 import {
   getEducation,
   getExperience,
@@ -29,16 +30,24 @@ export default async function Home() {
   const rateLimitExpireAt = (await redis.ttl(`rate:limit:${ipAddress}`)) ?? 0;
 
   return (
-    <PortfolioClient
-      ipAddress={ipAddress ?? "unknown"}
-      initialMessages={messages ?? []}
-      tokenUsage={tokenUsage}
-      isRateLimited={isRateLimited}
-      rateLimitExpireAt={rateLimitExpireAt}
-      profile={profile}
-      skills={skills}
-      experience={experience}
-      education={education}
-    />
+    <>
+      <StructuredData
+        profile={profile}
+        skills={skills}
+        experience={experience}
+        education={education}
+      />
+      <PortfolioClient
+        ipAddress={ipAddress ?? "unknown"}
+        initialMessages={messages ?? []}
+        tokenUsage={tokenUsage}
+        isRateLimited={isRateLimited}
+        rateLimitExpireAt={rateLimitExpireAt}
+        profile={profile}
+        skills={skills}
+        experience={experience}
+        education={education}
+      />
+    </>
   );
 }
