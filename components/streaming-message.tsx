@@ -23,3 +23,5 @@ export const StreamingMessage = memo(
     return stream ?? text ?? "";
   }
 );
+
+StreamingMessage.displayName = "StreamingMessage";

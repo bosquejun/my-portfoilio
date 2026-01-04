@@ -52,7 +52,7 @@ export function ContactSection() {
       if (result.success) {
         reset();
       }
-    } catch (error) {
+    } catch {
       setState({
         success: false,
         message: "Failed to send message. Please try again later.",

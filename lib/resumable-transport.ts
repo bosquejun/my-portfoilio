@@ -6,8 +6,8 @@ export const createResumableTransport = ({
   setMessageId,
 }: {
   messageId: string | null;
-  setChatId: (id: string | null) => any;
-  setMessageId: (id: string | null) => any;
+  setChatId: (id: string | null) => void;
+  setMessageId: (id: string | null) => void;
 }) =>
   new DefaultChatTransport({
     async prepareSendMessagesRequest({ messages, id }) {

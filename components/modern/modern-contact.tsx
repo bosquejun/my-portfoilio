@@ -52,7 +52,7 @@ export function ModernContactSection() {
       if (result.success) {
         reset();
       }
-    } catch (error) {
+    } catch {
       setState({
         success: false,
         message: "Failed to send message. Please try again later.",
@@ -75,8 +75,8 @@ export function ModernContactSection() {
             Get In <span className="text-primary">Touch</span>
           </h2>
           <p className="text-muted-foreground text-sm md:text-base max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from
-            you.
+            Have a project in mind or want to collaborate? I&apos;d love to hear
+            from you.
           </p>
         </motion.div>
 
