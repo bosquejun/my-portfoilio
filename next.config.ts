@@ -14,8 +14,6 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   // React strict mode for better development experience
   reactStrictMode: true,
-  // Optimize production builds
-  swcMinify: true,
   // Experimental features for better performance
   experimental: {
     optimizePackageImports: [
