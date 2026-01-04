@@ -1,4 +1,5 @@
 import { DivideX } from "@/components/modern/divider";
+import { ModernContactSection } from "@/components/modern/modern-contact";
 import { ModernEducationSection } from "@/components/modern/modern-education";
 import { ModernExperienceSection } from "@/components/modern/modern-experience";
 import { ModernFooter } from "@/components/modern/modern-footer";
@@ -26,6 +27,8 @@ export function ModernTemplate({ profile, skills, experience, education }: Moder
         <ModernExperienceSection experience={experience} />
         <DivideX />
         <ModernEducationSection education={education} />
+        <DivideX />
+        <ModernContactSection />
         <DivideX />
       </main>
       <ModernFooter profile={profile} />

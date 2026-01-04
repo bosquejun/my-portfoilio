@@ -9,7 +9,7 @@ import {
   useSpring,
   useTransform,
 } from "motion/react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "../theme-toggle";
 import { Container } from "./container";
 
@@ -19,6 +19,7 @@ const NAV_ITEMS = [
   { title: "Skills", href: "#skills" },
   { title: "Experience", href: "#experience" },
   { title: "Education", href: "#education" },
+  { title: "Contact", href: "#contact" },
 ];
 
 interface ModernNavbarProps {
@@ -34,8 +35,6 @@ export const ModernNavbar = ({ profile }: ModernNavbarProps) => (
 );
 
 const getFirstName = (name: string) => name.split(" ")[0] || name;
-
-import { useEffect, useRef } from "react";
 
 const MobileNav = ({
   items,
@@ -67,25 +66,22 @@ const MobileNav = ({
     setIsOpen(false);
   }, []);
 
-  const scrollToSection = useCallback(
-    (href: string) => {
-      const element = document.querySelector(href);
-      if (element) {
-        // Different offsets for mobile navigation
-        const isMobile = window.innerWidth < 768;
-        const headerOffset = isMobile ? 100 : 100; // Consistent for modern template
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+  const scrollToSection = useCallback((href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      // Different offsets for mobile navigation
+      const isMobile = window.innerWidth < 768;
+      const headerOffset = isMobile ? 100 : 100; // Consistent for modern template
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-        setIsOpen(false);
-      }
-    },
-    []
-  );
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+      setIsOpen(false);
+    }
+  }, []);
 
   return (
     <div
@@ -93,10 +89,9 @@ const MobileNav = ({
       className={[
         "fixed top-0 left-0 right-0 z-40 flex items-center justify-between p-2 md:hidden transition-all duration-300",
         scrolled
-          ? "bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border"
+          ? "bg-background border-b border-border shadow-sm"
           : "bg-transparent",
       ].join(" ")}
-      style={{ WebkitBackdropFilter: scrolled ? "blur(12px)" : undefined, backdropFilter: scrolled ? "blur(12px)" : undefined }}
     >
       <button
         onClick={handleScrollToTop}
@@ -122,11 +117,11 @@ const MobileNav = ({
             transition={{ duration: 0.2 }}
             className="fixed inset-0 z-[60] h-full w-full bg-white shadow-lg dark:bg-neutral-900"
           >
-            <div className="absolute right-4 bottom-4">
+            {/* <div className="absolute right-4 bottom-4">
               <ThemeToggle />
-            </div>
+            </div> */}
 
-            <div className="flex items-center justify-between p-2">
+            <div className="flex items-center justify-between p-2 px-4">
               <button
                 onClick={handleScrollToTop}
                 className="text-lg font-bold tracking-tight hover:text-primary transition-colors"
@@ -134,20 +129,28 @@ const MobileNav = ({
               >
                 {getFirstName(name)}
               </button>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="shadow-aceternity flex size-6 flex-col items-center justify-center rounded-md"
-                aria-label="Close menu"
-              >
-                <X className="size-4 shrink-0 text-gray-600" />
-              </button>
+              <div className="flex items-center justify-end">
+                <div className="flex items-center justify-between p-2 px-4">
+                  <ThemeToggle />
+                </div>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="shadow-aceternity flex size-6 flex-col items-center justify-center rounded-md"
+                  aria-label="Close menu"
+                >
+                  <X className="size-4 shrink-0 text-gray-600" />
+                </button>
+              </div>
             </div>
-            <nav className="divide-divide border-divide mt-6 flex flex-col divide-y border-t" aria-label="Mobile navigation">
+            <nav
+              className="divide-divide border-divide mt-6 flex flex-col divide-y border-t"
+              aria-label="Mobile navigation"
+            >
               {items.map((item, index) => (
                 <button
                   key={item.title}
                   onClick={() => scrollToSection(item.href)}
-                  className="px-4 py-2 font-medium text-gray-600 transition duration-200 hover:text-neutral-900 dark:text-gray-300 dark:hover:text-neutral-300 text-left"
+                  className="px-4 py-3 font-medium text-foreground transition-colors duration-200 hover:bg-muted/50 active:bg-muted text-left w-full"
                   aria-label={`Go to ${item.title}`}
                 >
                   <motion.div
@@ -170,44 +173,71 @@ const MobileNav = ({
 
 const DesktopNav = ({
   items,
+  name,
 }: {
   items: { title: string; href: string }[];
   name: string;
   photo?: string;
 }) => {
+  const [scrolled, setScrolled] = useState(false);
+
+  // Listen for scroll to toggle background/blur
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 8) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToSection = useCallback((href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      const headerOffset = 80; // Height of header + padding
+      // Account for floating nav if visible (appears at scroll > 100)
+      const isFloatingNavVisible = window.scrollY > 100;
+      const headerOffset = isFloatingNavVisible ? 100 : 80; // Height of header + padding
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   }, []);
 
+  const handleScrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
-    <div className="hidden md:flex h-16 w-full bg-transparent items-center" aria-label="Desktop navigation">
+    <div
+      className={[
+        "hidden md:flex h-16 w-full items-center transition-all duration-300",
+        scrolled
+          ? "bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border"
+          : "bg-transparent",
+      ].join(" ")}
+      style={{
+        WebkitBackdropFilter: scrolled ? "blur(12px)" : undefined,
+        backdropFilter: scrolled ? "blur(12px)" : undefined,
+      }}
+      aria-label="Desktop navigation"
+    >
       {/* Left: First name button */}
       <div className="flex flex-1 items-center">
-        {/* <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        <button
+          onClick={handleScrollToTop}
           className="text-xl font-bold tracking-tight hover:text-primary transition-colors"
           aria-label="Scroll to top"
         >
-          <Avatar>
-            <AvatarImage
-              src={photo}
-              alt={name}
-            />
-            <AvatarFallback>
-              {name.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
-        </button> */}
+          {getFirstName(name)}
+        </button>
       </div>
       {/* Center: Nav items */}
       <div className="flex flex-1 justify-center items-center gap-10">
@@ -244,7 +274,7 @@ const FloatingNav = ({
   };
   const y = useSpring(
     useTransform(scrollY, [100, 120], [-100, 10]),
-    springConfig,
+    springConfig
   );
 
   const scrollToSection = useCallback((href: string) => {
@@ -256,9 +286,13 @@ const FloatingNav = ({
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
+  }, []);
+
+  const handleScrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
   return (
@@ -267,6 +301,13 @@ const FloatingNav = ({
       className="shadow-aceternity fixed inset-x-0 top-0 z-50 mx-auto hidden max-w-[calc(80rem-4rem)] items-center justify-between bg-white/80 px-8 py-4 backdrop-blur-sm md:flex xl:rounded-2xl border-l border-r border-divide dark:bg-neutral-900/80 dark:shadow-[0px_2px_0px_0px_var(--color-neutral-800),0px_-2px_0px_0px_var(--color-neutral-800)]"
       aria-label="Floating navigation"
     >
+      <button
+        onClick={handleScrollToTop}
+        className="text-lg font-bold tracking-tight hover:text-primary transition-colors"
+        aria-label="Scroll to top"
+      >
+        {getFirstName(name)}
+      </button>
       <div className="flex items-center gap-12">
         {items.map((item) => (
           <button
@@ -279,7 +320,7 @@ const FloatingNav = ({
           </button>
         ))}
       </div>
-      <div className="absolute right-6 flex items-center gap-3">
+      <div className="flex items-center gap-3">
         <ThemeToggle />
       </div>
     </motion.nav>

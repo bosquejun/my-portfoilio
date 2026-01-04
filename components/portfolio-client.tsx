@@ -1,9 +1,16 @@
 "use client";
 
+import { AIChatbot } from "@/components/ai-chatbot";
 import { BackToTop } from "@/components/back-to-top";
 import { TemplateSwitcher } from "@/components/template-switcher";
-import { EducationData, ExperienceData, ProfileData, SkillCategory } from "@/lib/content";
+import {
+  EducationData,
+  ExperienceData,
+  ProfileData,
+  SkillCategory,
+} from "@/lib/content";
 import { DEFAULT_TEMPLATE, TemplateType } from "@/lib/template-config";
+import { LanguageModelUsage, UIMessage } from "ai";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 
@@ -12,6 +19,11 @@ interface PortfolioClientProps {
   skills: SkillCategory[];
   experience: ExperienceData[];
   education: EducationData;
+  initialMessages: UIMessage<{ totalUsage?: LanguageModelUsage }>[];
+  ipAddress: string;
+  tokenUsage: number;
+  isRateLimited: boolean;
+  rateLimitExpireAt: number;
 }
 
 // Dynamic imports for code splitting - only load the template being used
@@ -31,14 +43,30 @@ const ModernTemplate = dynamic(() => import("./modern"), {
   ),
 });
 
-export function PortfolioClient({ profile, skills, experience, education }: PortfolioClientProps) {                 
-  const [currentTemplate, setCurrentTemplate] = useState<TemplateType>(DEFAULT_TEMPLATE);
+export function PortfolioClient({
+  profile,
+  skills,
+  experience,
+  education,
+  initialMessages,
+  ipAddress,
+  tokenUsage,
+  isRateLimited,
+  rateLimitExpireAt,
+}: PortfolioClientProps) {
+  const [currentTemplate, setCurrentTemplate] =
+    useState<TemplateType>(DEFAULT_TEMPLATE);
   const [mounted, setMounted] = useState(false);
 
   // Load template preference from localStorage
   useEffect(() => {
-    const savedTemplate = localStorage.getItem("portfolio-template") as TemplateType;
-    if (savedTemplate && (savedTemplate === "classic" || savedTemplate === "modern")) {
+    const savedTemplate = localStorage.getItem(
+      "portfolio-template"
+    ) as TemplateType;
+    if (
+      savedTemplate &&
+      (savedTemplate === "classic" || savedTemplate === "modern")
+    ) {
       setCurrentTemplate(savedTemplate);
     }
     setMounted(true);
@@ -72,8 +100,18 @@ export function PortfolioClient({ profile, skills, experience, education }: Port
           education={education}
         />
       )}
-      
+
       <BackToTop />
+      <AIChatbot
+        ipAddress={ipAddress}
+        initialMessages={initialMessages.map((message) => ({
+          ...message,
+          isHistoryMessage: true,
+        }))}
+        initialTokenUsage={tokenUsage}
+        initialIsRateLimited={isRateLimited}
+        rateLimitExpireAt={rateLimitExpireAt}
+      />
       <TemplateSwitcher
         currentTemplate={currentTemplate}
         onTemplateChange={handleTemplateChange}

@@ -20,33 +20,35 @@ const firaCode = Fira_Code({
 const profile = getProfile();
 const siteTitle = `${profile.name} | ${profile.title}`;
 const siteDescription = profile.summary;
-const siteUrl = profile.website || 'https://jun.is-a.dev';
+const siteUrl = profile.website || "https://jun.is-a.dev";
 
 export const metadata: Metadata = {
   title: siteTitle,
   description: siteDescription,
   metadataBase: new URL(siteUrl),
   icons: {
-    icon: '/icon.jpg',
-    shortcut: '/icon.jpg',
-    apple: '/icon.jpg',
+    icon: "/icon.jpg",
+    shortcut: "/icon.jpg",
+    apple: "/icon.jpg",
   },
   openGraph: {
     title: siteTitle,
     description: siteDescription,
     url: siteUrl,
     siteName: `${profile.name} Portfolio`,
-    locale: 'en_US',
-    type: 'website',
-    images: profile.photo ? [
-      {
-        url: profile.photo,
-        alt: profile.name,
-      }
-    ] : undefined,
+    locale: "en_US",
+    type: "website",
+    images: profile.photo
+      ? [
+          {
+            url: profile.photo,
+            alt: profile.name,
+          },
+        ]
+      : undefined,
   },
   twitter: {
-    card: 'summary_large_image',
+    card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
     images: profile.photo ? [profile.photo] : undefined,

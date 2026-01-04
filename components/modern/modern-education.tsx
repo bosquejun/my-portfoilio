@@ -46,7 +46,7 @@ export function ModernEducationSection({ education }: ModernEducationSectionProp
                   <p className="text-sm md:text-base text-muted-foreground mt-1">
                     {education.school} • {education.period}
                   </p>
-                  <div className="mt-4 space-y-2">
+                  {/* <div className="mt-4 space-y-2">
                     <p className="text-sm font-semibold text-foreground">Languages:</p>
                     <div className="flex flex-wrap gap-2">
                       {education.languages.map((lang) => (
@@ -58,7 +58,7 @@ export function ModernEducationSection({ education }: ModernEducationSectionProp
                         </span>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

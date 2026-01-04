@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { EducationData } from "@/lib/content"
 import { GraduationCap } from "lucide-react"
 import { motion } from "motion/react"
@@ -38,12 +38,12 @@ export function EducationSection({ education }: EducationSectionProps) {
               </div>
             </div>
           </CardHeader>
-          <CardContent>
+          {/* <CardContent>
             <div className="space-y-2 text-sm md:text-base text-muted-foreground">
               <p className="font-semibold">Languages:</p>
               <p>{education.languages.join(" • ")}</p>
             </div>
-          </CardContent>
+          </CardContent> */}
         </Card>
         </motion.div>
       </div>

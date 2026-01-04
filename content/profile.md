@@ -7,9 +7,14 @@ linkedin: "https://linkedin.com/in/junbosque"
 github: "https://github.com/bosquejun"
 website: "https://jun.is-a.dev"
 photo: "/profile-photo.jpg"
+languages:
+  - name: "English (Fluent)"
+    countryCode: "US"
+  - name: "Filipino (Native)"
+    countryCode: "PH"
 ---
 
 # About Me
 
-Seasoned Full-Stack Developer with a strong background in Fintech and Blockchain. Recognized for delivering scalable, secure solutions for institutional clients and driving complex projects from concept to deployment. Highly proficient in modern web technologies, cloud platforms, and blockchain protocols. Dedicated to building robust, high-performance systems and continuously advancing engineering best practices.
+A Senior Full Stack Engineer with a decade of experience delivering high-performance web applications and distributed systems. Expert in building end-to-end ecosystems using Next.js, TypeScript, and Node.js, combined with cutting-edge AI integration. Proven track record of taking complex features from concept to production-ready scale.
 

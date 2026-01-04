@@ -1,3 +1,4 @@
+import { ContactSection } from "@/components/classic/contact-section";
 import { EducationSection } from "@/components/classic/education-section";
 import { ExperienceSection } from "@/components/classic/experience-section";
 import { Footer } from "@/components/classic/footer";
@@ -22,6 +23,7 @@ export function ClassicTemplate({ profile, skills, experience, education }: Clas
         <SkillsSection skills={skills} />
         <ExperienceSection experience={experience} />
         <EducationSection education={education} />
+        <ContactSection />
       </main>
       <Footer profile={profile} />
     </>

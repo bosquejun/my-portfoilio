@@ -33,6 +33,7 @@ export function HeaderV2({ profile }: HeaderV2Props) {
     { href: "#skills", label: "Skills" },
     { href: "#experience", label: "Experience" },
     { href: "#education", label: "Education" },
+    { href: "#contact", label: "Contact" },
   ]
 
   const scrollToSection = (href: string) => {

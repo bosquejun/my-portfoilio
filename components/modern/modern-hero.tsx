@@ -1,10 +1,11 @@
 "use client";
 
 import { ProfileData } from "@/lib/content";
-import { Download, Github, Globe, Linkedin, Mail, MapPin } from "lucide-react";
+import { Github, Globe, Languages, Linkedin, Mail, MapPin } from "lucide-react";
 import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
+import ReactCountryFlag from "react-country-flag";
 import { ModernButton } from "./button";
 import { Container } from "./container";
 import { Heading } from "./heading";
@@ -17,7 +18,7 @@ interface ModernHeroProps {
 
 export const ModernHero = ({ profile }: ModernHeroProps) => {
   return (
-    <section className="relative border-divide border-x -mt-16" id="about">
+    <section className="relative border-divide border-x -mt-16 min-h-screen" id="about">
       {/* Mesh Gradient Background */}
       <div className="absolute inset-0 opacity-20 dark:opacity-10 dark:block hidden">
         <MeshGradient
@@ -77,6 +78,23 @@ export const ModernHero = ({ profile }: ModernHeroProps) => {
         >
           <MapPin className="h-4 w-4" />
           <span className="text-sm md:text-base">{profile.location}</span>
+        </motion.div>
+
+        {/* Language */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-4 flex items-center gap-2 text-muted-foreground"
+        >
+          <Languages className="h-4 w-4" />
+          <span className="text-sm md:text-base"></span>
+          {profile.languages.map((language, index) => (
+            <div key={language.countryCode} className="flex items-center gap-2">
+            <span  className="text-sm md:text-base flex items-center gap-2"><ReactCountryFlag countryCode={language.countryCode} />{language.name}</span>
+            {index < profile.languages.length - 1 && <span className="text-sm md:text-base">•</span>}
+            </div>
+          ))}
         </motion.div>
 
         {/* Summary */}

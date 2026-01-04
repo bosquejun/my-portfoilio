@@ -2,9 +2,10 @@
 
 import { Button } from "@/components/ui/button"
 import { ProfileData } from "@/lib/content"
-import { Github, Globe, Linkedin, Mail, MapPin } from "lucide-react"
+import { Github, Globe, Languages, Linkedin, Mail, MapPin } from "lucide-react"
 import { motion } from "motion/react"
 import Image from "next/image"
+import ReactCountryFlag from "react-country-flag"
 
 interface HeroSectionProps {
   profile: ProfileData
@@ -68,6 +69,13 @@ export function HeroSection({ profile }: HeroSectionProps) {
                 <MapPin className="h-4 w-4 md:h-5 md:w-5" />
                 <span className="text-sm md:text-base">{profile.location}</span>
               </div>
+              <div className="flex items-start justify-center lg:justify-start gap-2 text-muted-foreground">
+                <Languages className="mt-1 h-4 w-4 md:h-5 md:w-5" />
+                <span className="text-sm md:text-base">{profile.languages.map((language) => (
+                 <span key={language.countryCode} className="text-sm md:text-base flex items-center gap-2"><ReactCountryFlag countryCode={language.countryCode} />{language.name}</span>
+                ))}</span>
+              </div>
+              
             </motion.div>
 
             <motion.p

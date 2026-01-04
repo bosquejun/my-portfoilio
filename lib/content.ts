@@ -15,6 +15,10 @@ export interface ProfileData {
   website?: string
   photo?: string
   summary: string
+  languages: {
+    name: string
+    countryCode: string
+  }[]
 }
 
 export interface SkillCategory {
@@ -52,6 +56,7 @@ export function getProfile(): ProfileData {
     github: data.github,
     website: data.website,
     photo: data.photo,
+    languages: data.languages,
     summary: content.replace(/^#\s+About Me\s+/m, '').trim()
   }
 }
